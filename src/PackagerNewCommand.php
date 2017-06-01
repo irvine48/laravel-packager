@@ -10,7 +10,7 @@ use JeroenG\Packager\PackagerHelper;
  *
  * @package Packager
  * @author JeroenG
- * 
+ *
  **/
 class PackagerNewCommand extends Command
 {
@@ -98,6 +98,22 @@ class PackagerNewCommand extends Command
             rename($path.$vendor.'/skeleton-master', $fullPath);
         $bar->advance();
 
+        // Create the Laravel 5.4 folder structure
+        $this->info('Creating Laravel-like directories...');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/app/Http/Controllers');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/app/Http/Middleware');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/config');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/database/factories');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/database/migrations');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/database/seeds');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/public/css');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/public/js');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/resources/assets');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/resources/lang');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/resources/views');
+            $this->helper->makeDir($path.$vendor.'/'.$name.'/src'.'/routes');
+        $bar->advance();
+
         // Creating a Laravel Service Provider in the src directory
         $this->info('Creating service provider...');
             $newProvider = $fullPath.'/src/'.$name.'ServiceProvider.php';
@@ -135,7 +151,7 @@ class PackagerNewCommand extends Command
             }
         $bar->advance();
 
-        
+
 
         // Add it to composer.json
         $this->info('Adding package to composer and app...');
