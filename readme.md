@@ -8,10 +8,28 @@ This package provides you with a simple tool to set up a new package and it will
 
 ## Installation
 
-Via Composer
+Add repository in Composer.json
 
+```php
+///
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/irvine48/laravel-packager"
+        }
+],
+///
+
+///
+"require": {
+        "jeroen-g/laravel-packager": "dev-master"
+},
+///
+```
+
+Then run
 ```bash
-$ composer require jeroen-g/laravel-packager
+$ composer update
 ```
 
 Then add the service provider in `config/app.php`:
